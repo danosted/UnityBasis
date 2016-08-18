@@ -12,7 +12,7 @@
         void Awake()
         {
             var ioc = new IoC();
-            var pman = new PrefabManager(ioc);
+            var pman = ioc.Resolve<PrefabManager>();
             var poc = pman.GetPrefab<PoC>();
         }
     }

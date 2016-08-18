@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using UnityEngine;
 
     public class IoC
     {
@@ -13,7 +12,7 @@
             _container = new HashSet<object>();
         }
 
-        public T Resolve<T>() where T : new()
+        public T Resolve<T>()
         {
             var entity = (T)_container.FirstOrDefault(e => e.GetType() == typeof(T));
 
@@ -22,22 +21,9 @@
                 return entity;
             }
 
-            entity = (T)Activator.CreateInstance(typeof(T), new object[] { });
+            entity = (T)Activator.CreateInstance(typeof(T), new object[] { this });
             _container.Add(entity);
 
-            return entity;
-        }
-
-        public T ResolvePrefab<T>() where T : UnityEngine.Object
-        {
-            var prefabs = Resources.LoadAll<T>("");
-            var prefab = prefabs.FirstOrDefault<T>();
-            if (prefab == null)
-            {
-                throw new UnityException(string.Format("Prefab resource not found. Type '{0}'.", typeof(T)));
-            }
-            var entity = UnityEngine.Object.Instantiate<T>(prefab);
-            _container.Add(entity);
             return entity;
         }
 
