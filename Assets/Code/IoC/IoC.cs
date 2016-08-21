@@ -7,6 +7,7 @@
     public class IoC
     {
         private ICollection<object> _container;
+
         public IoC()
         {
             _container = new HashSet<object>();
