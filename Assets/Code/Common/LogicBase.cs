@@ -23,13 +23,6 @@
             PrefabManager = prefabManager;
             Configuration = config;
         }
-
-        public LogicBase(IoC container)
-        {
-            Container = container;
-            PrefabManager = container.Resolve<PrefabManager>();
-            Configuration = PrefabManager.GetConfiguration();
-        }
         #endregion
     }
 }

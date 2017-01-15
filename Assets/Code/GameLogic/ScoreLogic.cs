@@ -4,22 +4,27 @@
     using Common;
     using DataAccess;
     using IoC;
+    using Common.DataObjects;
 
     public class ScoreLogic : LogicBase
     {
-        #region Constructors
-        public ScoreLogic(IoC container) : base(container)
-        {
-        }
-
-        public ScoreLogic(IoC container, PrefabManager prefabManager, GlobalConfiguration config) : base(container, prefabManager, config)
-        {
-        }
+        #region Properties
+        private ScoreObject _score;
         #endregion
 
-        public void StartPOC()
+        #region Constructors
+        public ScoreLogic(IoC container, PrefabManager prefabManager, GlobalConfiguration config) : base(container, prefabManager, config)
         {
-            
+            _score = new ScoreObject
+            {
+                CurrentScore = 0,
+            };
+        }
+        #endregion
+        
+        public void ModifyScore(int toAdd)
+        {
+            _score.CurrentScore += toAdd;
         }
     }
 }

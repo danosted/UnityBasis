@@ -8,10 +8,6 @@
     public class PoCLogic : LogicBase
     {
         #region Constructors
-        public PoCLogic(IoC container) : base(container)
-        {
-        }
-
         public PoCLogic(IoC container, PrefabManager prefabManager, GlobalConfiguration config) : base(container, prefabManager, config)
         {
         }
