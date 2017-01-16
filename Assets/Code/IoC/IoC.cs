@@ -5,7 +5,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using UnityEngine;
 
     public class IoC
     {
@@ -34,26 +33,19 @@
                 return entity;
             }
 
-            try
+            if (typeof(T).GetConstructor(Type.EmptyTypes) != null)
             {
-                if (typeof(T).GetConstructor(new[] { typeof(IoC) }) != null)
-                {
-                    entity = (T)Activator.CreateInstance(typeof(T), new object[] { this });
-                }
-                else if (typeof(T).GetConstructor(new[] { typeof(IoC), PrefabManager.GetType(), Configuration.GetType() }) != null)
-                {
-                    entity = (T)Activator.CreateInstance(typeof(T), new object[] { this, PrefabManager, Configuration });
-                }
-                else
-                {
-                    entity = (T)Activator.CreateInstance(typeof(T), new object[] { });
-                }
+                entity = (T)Activator.CreateInstance(typeof(T), new object[] { });
             }
-            catch(Exception e)
+            else if (typeof(T).GetConstructor(new[] { typeof(IoC) }) != null)
             {
-                var errorMsg = string.Format("IOC Error when resolving type. Type {0}. Message {1}.", typeof(T), e.Message);
-                throw new UnityException(errorMsg, e);
+                entity = (T)Activator.CreateInstance(typeof(T), new object[] { this });
             }
+            else
+            {
+                entity = (T)Activator.CreateInstance(typeof(T), new object[] { this, PrefabManager, Configuration });
+            }
+
             _container.Add(entity);
 
             return entity;
