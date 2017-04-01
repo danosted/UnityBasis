@@ -22,6 +22,7 @@
             
             // Initialize game...
             InitializeGame();
+
         }
 
         private void InitializeGame()

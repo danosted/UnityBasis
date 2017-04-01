@@ -1,9 +1,9 @@
 ﻿namespace Assets.Code.MonoBehaviours.Configuration
 {
     using Obstacles;
-    using System.Collections.Generic;
     using UnityEngine;
     using UserInterface;
+    using Audio;
 
     public class GlobalConfiguration : MonoBehaviour
     {
@@ -14,5 +14,8 @@
         public CanvasManager ui_game_over_canvas_manager;
         [Header("Game Params")]
         public bool param_game_over;
+        [Header("Audio")]
+        public AudioSystem audio_system;
+        public AudioClipConfiguration audio_configuration_backgroun_01;
     }
 }

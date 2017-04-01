@@ -20,6 +20,9 @@
             // Initialize UI
             Container.Resolve<UserInterfaceLogic>().InitializeGameCanvas();
 
+            // Initialize Audio
+            Container.Resolve<AudioLogic>().InitializeAudio();
+
             // Create an object
             var obj = PrefabManager.GetPrefab(Configuration.prefab_moveable_object);
             obj.Activate(Container, Vector3.zero);
