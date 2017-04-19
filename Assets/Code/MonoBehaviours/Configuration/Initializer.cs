@@ -7,7 +7,8 @@
 
     public class Initializer : MonoBehaviour
     {
-        public GlobalConfiguration Config;
+        [Header("Global Configuration Prefab"), Tooltip("Find under Assets/Prefabs/Configuration/")]
+        public GlobalConfiguration GlobalConfiguration;
         private IoC Container { get; set; }
         private PrefabManager PrefabManager { get; set; }
 
@@ -16,8 +17,8 @@
         /// </summary>
         void Awake()
         {
-            // Initialize IoC container
-            Container = new IoC(Config);
+            // Initialize "IoC" container with the configuration to distribute
+            Container = new IoC(GlobalConfiguration);
             PrefabManager = Container.Resolve<PrefabManager>();
             
             // Initialize game...
@@ -32,6 +33,7 @@
             control.StartGameFlow();
         }
 
+        // TODO 1 (DRO): Move to a more fitting location
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))

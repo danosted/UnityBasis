@@ -4,8 +4,6 @@
     using Common;
     using UnityEngine;
     using UnityEngine.UI;
-    using GameLogic;
-    using Configuration;
     using Utilities;
 
     [RequireComponent(typeof(Text))]

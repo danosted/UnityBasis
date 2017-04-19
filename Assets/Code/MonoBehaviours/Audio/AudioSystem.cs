@@ -16,8 +16,9 @@
 
         public void SetupAudio(AudioClipConfiguration clipConfig)
         {
-            AudioSource.clip = clipConfig.AudioClips[0];
-            AudioSource.Play();
+            //AudioSource.clip = ;
+            AudioSource.PlayOneShot(clipConfig.AudioClips[0]);
+            
         }
     }
 }

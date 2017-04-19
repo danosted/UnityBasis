@@ -3,10 +3,7 @@
     using MonoBehaviours.Configuration;
     using Common;
     using DataAccess;
-    using DataAccess.DTOs;
     using IoC;
-    using UnityEngine;
-    using UnityEngine.SceneManagement;
 
     public class AudioLogic : LogicBase
     {
