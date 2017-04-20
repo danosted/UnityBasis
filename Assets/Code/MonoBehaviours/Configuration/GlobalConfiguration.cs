@@ -12,10 +12,12 @@
         [Header("UI")]
         public CanvasManager ui_game_canvas_manager;
         public CanvasManager ui_game_over_canvas_manager;
+        public CanvasManager ui_game_menu_canvas_manager;
         [Header("Game Params")]
         public bool param_game_over;
+        public bool param_game_started { get; set; }
         [Header("Audio")]
         public AudioSystem audio_system;
-        public AudioClipConfiguration audio_configuration_backgroun_01;
+        public AudioClipConfiguration audio_background_01;
     }
 }

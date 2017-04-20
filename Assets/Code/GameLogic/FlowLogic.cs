@@ -15,28 +15,21 @@
         {
         }
 
-        public void StartGameMenu()
-        {
-            // TODO 1 (DRO): Generic Game Menu Canvas
-            // Initialize UI
-            //Container.Resolve<UserInterfaceLogic>().InitializeGameCanvas();
-
-            //// Initialize Audio
-            //Container.Resolve<AudioLogic>().InitializeAudio();
-
-            //// Create an object
-            //var obj = PrefabManager.GetPrefab(Configuration.prefab_moveable_object);
-            //obj.Activate(Container, Vector3.zero);
-        }
-
-        public void StartGameFlow()
+        public void InitializeGame()
         {
             // Initialize UI
-            Container.Resolve<UserInterfaceLogic>().InitializeGameCanvas();
+            Container.Resolve<UserInterfaceLogic>().InitializeGameMenuCanvas();
 
             // Initialize Audio
             Container.Resolve<AudioLogic>().InitializeAudio();
 
+        }
+
+        public void StartGame()
+        {
+            // Change to game UI
+            Container.Resolve<UserInterfaceLogic>().InitializeGameCanvas();
+            
             // Create an object
             var obj = PrefabManager.GetPrefab(Configuration.prefab_moveable_object);
             obj.Activate(Container, Vector3.zero);
@@ -50,6 +43,7 @@
 
         public void RestartGame()
         {
+            // TODO 2 (DRO): this could be done more efficiently
             SceneManager.LoadScene(0);
         }
     }

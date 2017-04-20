@@ -8,8 +8,7 @@
 
     public class UserInterfaceLogic : LogicBase
     {
-        public CanvasManager GameCanvas { get; private set; }
-        public CanvasManager GameOverCanvas { get; private set; }
+        public CanvasManager CurrentCanvas { get; private set; }
 
         public UserInterfaceLogic(IoC container, PrefabManager prefabManager, GlobalConfiguration config) : base(container, prefabManager, config)
         {
@@ -17,20 +16,27 @@
 
         internal void InitializeGameCanvas()
         {
-            if(GameCanvas != null)
-            {
-                return;
-            }
-            GameCanvas = PrefabManager.GetPrefab(Configuration.ui_game_canvas_manager);
-            GameCanvas.Activate(Container);
+            InitializeCanvas(Configuration.ui_game_canvas_manager);
         }
 
         internal void InitializeGameOverCanvas()
         {
-            PrefabManager.ReturnPrefab(GameCanvas);
+            InitializeCanvas(Configuration.ui_game_over_canvas_manager);
+        }
 
-            GameOverCanvas = PrefabManager.GetPrefab(Configuration.ui_game_over_canvas_manager);
-            GameOverCanvas.Activate(Container);
+        internal void InitializeGameMenuCanvas()
+        {
+            InitializeCanvas(Configuration.ui_game_menu_canvas_manager);
+        }
+
+        private void InitializeCanvas(CanvasManager canvas)
+        {
+            if (CurrentCanvas != null)
+            {
+                PrefabManager.ReturnPrefab(CurrentCanvas);
+            }
+            CurrentCanvas = PrefabManager.GetPrefab(canvas);
+            CurrentCanvas.Activate(Container);
         }
     }
 }

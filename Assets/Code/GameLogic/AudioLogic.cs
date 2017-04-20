@@ -16,7 +16,7 @@
         {
             var audioSystem = PrefabManager.GetPrefab(Configuration.audio_system);
             audioSystem.Activate(Container);
-            audioSystem.SetupAudio(PrefabManager.GetPrefab(Configuration.audio_configuration_backgroun_01));
+            audioSystem.SetupAudio(PrefabManager.GetPrefab(Configuration.audio_background_01));
         }
 
     }

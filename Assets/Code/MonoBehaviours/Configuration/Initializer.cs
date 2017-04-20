@@ -20,7 +20,7 @@
             // Initialize "IoC" container with the configuration to distribute
             Container = new IoC(GlobalConfiguration);
             PrefabManager = Container.Resolve<PrefabManager>();
-            
+
             // Initialize game...
             InitializeGame();
 
@@ -30,19 +30,31 @@
         {
             // Initialize Game
             var control = Container.Resolve<FlowLogic>();
-            control.StartGameFlow();
+            control.InitializeGame();
         }
 
-        // TODO 1 (DRO): Move to a more fitting location
+        /// <summary>
+        /// Global Input Check
+        /// TODO 2 (DRO): maybe this should be located elsewhere
+        /// </summary>
         void Update()
         {
+            // Force game stop
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Container.Resolve<FlowLogic>().GameOver();
             }
-            if (!PrefabManager.GetConfiguration().param_game_over) return;
             if (Input.GetMouseButtonDown(0))
             {
+                // If game is not started, we start the game
+                if (!PrefabManager.GetConfiguration().param_game_started)
+                {
+                    PrefabManager.GetConfiguration().param_game_started = true;
+                    Container.Resolve<FlowLogic>().StartGame();
+                }
+
+                // If game is over, we restart the game
+                if (!PrefabManager.GetConfiguration().param_game_over) return;
                 Container.Resolve<FlowLogic>().RestartGame();
             }
         }
