@@ -31,14 +31,6 @@
             }
         }
 
-        internal void SetFocusOnMe(CameraFocusObject cameraFocusObject)
-        {
-            // Thoughts on this:
-            // What type of game is this? 2D, 3D?
-            // What are the camera configs, e.g. for a 2D game, which axis is the camera moving along?
-            
-        }
-
         public Vector3 ViewportToScreenBorderMin
         {
             get

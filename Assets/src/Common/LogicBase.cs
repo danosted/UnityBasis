@@ -7,17 +7,17 @@
     public class LogicBase
     {
         #region Properties
-        protected IoC Container { get; set; }
-        protected PrefabManager PrefabManager { get; private set; }
-        protected GlobalConfiguration Configuration { get; private set; }
+        protected readonly IoC _container;
+        protected readonly PrefabManager _prefabManager;
+        protected readonly GlobalConfiguration _configuration;
         #endregion
         
         #region Constructors
         public LogicBase(IoC container, PrefabManager prefabManager, GlobalConfiguration config)
         {
-            Container = container;
-            PrefabManager = prefabManager;
-            Configuration = config;
+            _container = container;
+            _prefabManager = prefabManager;
+            _configuration = config;
         }
         #endregion
     }

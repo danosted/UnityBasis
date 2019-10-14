@@ -26,10 +26,6 @@
             lock (semaLock)
             {
                 var instance = (T)_inactivePrefabs.FirstOrDefault(p => p.GetType() == typeof(T) && p.name.Equals(prefab.name + "(Clone)"));
-                //if (instance == null)
-                //{
-                //    instance = (T)_inactivePrefabs.FirstOrDefault(p => p.GetType() == typeof(T));
-                //}
                 if (instance != null)
                 {
                     _inactivePrefabs.Remove(instance);

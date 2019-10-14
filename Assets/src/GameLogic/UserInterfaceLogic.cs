@@ -29,14 +29,19 @@
             InitializeCanvas(Configuration.ui_game_menu_canvas_manager);
         }
 
-        private void InitializeCanvas(CanvasManager canvas)
+        internal void HideCurrentCanvas()
         {
             if (CurrentCanvas != null)
             {
                 PrefabManager.ReturnPrefab(CurrentCanvas);
             }
+        }
+
+        private void InitializeCanvas(CanvasManager canvas)
+        {
+            HideCurrentCanvas();
             CurrentCanvas = PrefabManager.GetPrefab(canvas);
-            CurrentCanvas.Activate(Container);
+            CurrentCanvas.Activate(_container);
         }
     }
 }

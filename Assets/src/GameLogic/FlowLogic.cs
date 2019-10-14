@@ -3,41 +3,43 @@
     using MonoBehaviours.Configuration;
     using Common;
     using DataAccess;
-    using DataAccess.DTOs;
     using IoC;
-    using UnityEngine;
     using UnityEngine.SceneManagement;
 
     public class FlowLogic : LogicBase
     {
 
+        protected readonly UserInterfaceLogic _userInterfaceLogic;
+
         public FlowLogic(IoC container, PrefabManager prefabManager, GlobalConfiguration config) : base(container, prefabManager, config)
         {
+            _userInterfaceLogic = _container.Resolve<UserInterfaceLogic>();
         }
 
         public void InitializeGame()
         {
             // Initialize UI
-            Container.Resolve<UserInterfaceLogic>().InitializeGameMenuCanvas();
+            _userInterfaceLogic.InitializeGameMenuCanvas();
 
             // Initialize Audio
-            Container.Resolve<AudioLogic>().InitializeAudio();
+            _container.Resolve<AudioLogic>().InitializeAudio();
 
         }
 
         public void StartGame()
         {
             // Change to game UI
-            Container.Resolve<UserInterfaceLogic>().InitializeGameCanvas();
-            
+            // Container.Resolve<UserInterfaceLogic>().InitializeGameCanvas();
+            _userInterfaceLogic.HideCurrentCanvas();
+
             // Create an object
             var obj = PrefabManager.GetPrefab(Configuration.prefab_moveable_object);
-            obj.Activate(Container, Vector3.zero);
+            obj.Activate(_container);
         }
 
         public void GameOver()
         {
-            Container.Resolve<UserInterfaceLogic>().InitializeGameOverCanvas();
+            _container.Resolve<UserInterfaceLogic>().InitializeGameOverCanvas();
             PrefabManager.Shutdown();
         }
 
