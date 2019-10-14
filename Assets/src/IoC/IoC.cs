@@ -53,7 +53,7 @@
 
         private T CreateInstance<T>() where T : new()
         {
-            return (T)Activator.CreateInstance(typeof(T), new object[] { });
+            return Activator.CreateInstance<T>();
         }
     }
 }

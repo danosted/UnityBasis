@@ -22,5 +22,10 @@
             ScoreLogic = ScoreLogic == null ? Container.Resolve<ScoreLogic>() : ScoreLogic;
             Configuration = Configuration == null ? PrefabManager.GetConfiguration() : Configuration;
         }
+
+        public virtual void Deactivate()
+        {
+            PrefabManager.ReturnPrefab(this);
+        }
     }
 }

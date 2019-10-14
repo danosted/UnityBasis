@@ -11,17 +11,12 @@
     {
         protected float Speed { get; set; }
 
-        public virtual void Activate(IoC container, Vector3 intialPosition)
+        public virtual void Activate(IoC container, Vector3? intialPosition = null)
         {
             base.Activate(container);
-            Speed = 1f;
-            transform.position = intialPosition;
+            Speed = Speed == 0f ? 1f : Speed;
+            transform.position = intialPosition ?? Vector3.zero;
             gameObject.SetActive(true);
-        }
-
-        public void Deactivate()
-        {
-            PrefabManager.ReturnPrefab(this);
         }
 
         protected virtual void Update()

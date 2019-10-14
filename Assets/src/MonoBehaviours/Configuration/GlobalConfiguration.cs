@@ -8,7 +8,7 @@
     public class GlobalConfiguration : MonoBehaviour
     {
         [Header("Moving Objects")]
-        public MoveableObject prefab_moveable_object;
+        public MovingObject prefab_moveable_object;
         [Header("UI")]
         public CanvasManager ui_game_canvas_manager;
         public CanvasManager ui_game_over_canvas_manager;
